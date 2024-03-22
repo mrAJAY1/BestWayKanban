@@ -4,11 +4,11 @@ import Header from "@/components/Header";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div className="min-h-screen flex flex-wrap">
+    <div className="min-h-screen flex">
       <Sidebar />
       <div className="flex-grow">
         <Header />
-        <main>{children}</main>
+        <main className="lg:p-10">{children}</main>
       </div>
     </div>
   );

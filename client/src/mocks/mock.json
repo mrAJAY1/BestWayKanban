@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "id": "1",
+      "name": "Name",
+      "boards": [
+        {
+          "id": "1",
+          "name": "Road Map",
+          "icon": "TreeStructure",
+          "lists": [
+            {
+              "title": "title",
+              "description": "description",
+              "img": "https://xsgames.co/randomusers/avatar.php?g=male"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "name": "Task",
+          "icon": "ListChecks",
+          "lists": [
+            {
+              "title": "title",
+              "description": "description",
+              "img": "https://xsgames.co/randomusers/avatar.php?g=male"
+            }
+          ]
+        },
+        {
+          "id": "3",
+          "name": "Members",
+          "icon": "UsersThree",
+          "lists": [
+            {
+              "title": "title",
+              "description": "description",
+              "img": "https://xsgames.co/randomusers/avatar.php?g=male"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

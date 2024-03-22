@@ -1,15 +1,14 @@
-import SideBarDisclosure from "./SideBarDisclosure";
 import {
   HouseSimple,
-  List,
   NotePencil,
   PlusCircle,
   SquaresFour,
   Table,
-  TreeStructure,
-  UsersThree,
 } from "@phosphor-icons/react";
 import Divider from "./Divider";
+import BoardGroup from "./BoardGroup";
+
+import boardGroups from "@/mocks/mock.json";
 
 const tabs = [
   {
@@ -34,26 +33,6 @@ const tabs = [
   },
 ];
 
-const boards = [
-  {
-    name: "Name",
-    subs: [
-      {
-        icon: <TreeStructure weight="fill" size={28} />,
-        text: "Road map",
-      },
-      {
-        icon: <List weight="fill" size={28} />,
-        text: "Task",
-      },
-      {
-        icon: <UsersThree weight="fill" size={28} />,
-        text: "Members",
-      },
-    ],
-  },
-];
-
 const SideBarNavs = () => {
   return (
     <div className="flex flex-col px-10 pt-8 gap-10 mt-10">
@@ -72,7 +51,7 @@ const SideBarNavs = () => {
 
 const Sidebar = () => {
   return (
-    <aside className="flex flex-col w-1/5 pt-20 px-5 border-r border-gray-800 gap-10">
+    <aside className="flex flex-col w-2/4 lg:w-1/5 pt-20 px-5 border-r border-gray-800 gap-10">
       <h1 className="text-4xl font-bold text-center">Trello</h1>
       <SideBarNavs />
       <Divider variant="dark" />
@@ -84,12 +63,8 @@ const Sidebar = () => {
           </span>
         </div>
         <div className="ps-6">
-          {boards.map((board) => (
-            <SideBarDisclosure
-              key={board.name}
-              name={board.name}
-              subs={board.subs}
-            />
+          {boardGroups.data.map((board) => (
+            <BoardGroup key={board.id} boardData={board} />
           ))}
         </div>
       </div>

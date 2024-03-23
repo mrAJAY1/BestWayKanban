@@ -1,18 +1,14 @@
 const { Schema, model } = require("mongoose");
 
-const todoSchema = new Schema({
-  title: {
+const cardSchema = new Schema({
+  title: String,
+  img: String,
+  list: {
     type: String,
-    required: true,
-  },
-  description: { type: String },
-  status: {
-    type: String,
-    enum: ["todo", "in-progress", "done"],
-    default: "todo",
+    enum: ["todo", "completed", "active"],
   },
 });
 
-const Todo = model("Todo", todoSchema);
+const Card = model("Card", cardSchema);
 
-module.exports = Todo;
+module.exports = Card;

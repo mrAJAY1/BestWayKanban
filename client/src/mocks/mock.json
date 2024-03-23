@@ -10,9 +10,14 @@
           "icon": "TreeStructure",
           "lists": [
             {
-              "title": "title",
-              "description": "description",
-              "img": "https://xsgames.co/randomusers/avatar.php?g=male"
+              "name": "To Do",
+              "cards": [
+                {
+                  "title": "title",
+                  "description": "description",
+                  "img": "https://xsgames.co/randomusers/avatar.php?g=male"
+                }
+              ]
             }
           ]
         },

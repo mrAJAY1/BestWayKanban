@@ -3,23 +3,16 @@ import { CaretUp, PlusCircle } from "@phosphor-icons/react";
 import { useState } from "react";
 import BoardNavBtn from "./BoardNavBtn";
 import Divider from "./Divider";
-
-export type BoardData = {
-  id: string;
-  name: string;
-  boards: {
-    icon: string;
-    name: string;
-    id: string;
-    lists: { title: string; description: string; img: string }[];
-  }[];
-};
+import { BoardGroup } from "@/context/BoardContext";
 
 const AddBoardBtn = () => {
   return (
     <div className="flex flex-col pt-4 gap-2">
       <Divider variant="mid" />
-      <div role="button" className="flex items-center px-5 py-3 hover:bg-slate-800 hover:rounded-lg transition-colors ">
+      <div
+        role="button"
+        className="flex items-center px-5 py-3 hover:bg-slate-800 hover:rounded-lg transition-colors "
+      >
         <span className="text-gray-300 flex-grow">Add Board</span>
         <PlusCircle className="text-gray-500 flex-grow" size={28} />
       </div>
@@ -27,7 +20,7 @@ const AddBoardBtn = () => {
   );
 };
 
-const BoardGroup = ({ boardData }: { boardData: BoardData }) => {
+const BoardGroup = ({ boardData }: { boardData: BoardGroup }) => {
   const [selectedBoard, setSelectedBoard] = useState<string>(
     boardData.boards[0].id
   );

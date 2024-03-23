@@ -1,42 +1,34 @@
+const Card = require("./model");
 const router = require("express").Router();
-const Todo = require("./model");
 
 router.get("/", async (req, res, next) => {
   try {
-    const todos = await Todo.find();
-    res.json(todos);
+    const cards = await Card.find();
+    res.json(cards);
   } catch (err) {
     next(err);
   }
 });
 
 router.post("/", async (req, res, next) => {
-  const todo = new Todo({
-    title: req.body.title,
-    description: req.body.description,
-    ...(req.body.status && { status: req.body.status }),
-  });
+  const { title, img, list } = req.body;
   try {
-    const newTodo = await todo.save();
-    res.status(201).json(newTodo);
+    const todo = await Card.create({
+      title,
+      img,
+      list,
+    });
+    res.status(201).json(todo);
   } catch (err) {
     next(err);
   }
 });
 
-router.delete("/:id", async (req, res, next) => {
+router.put("/", async (req, res, next) => {
+  const { list, id } = req.body;
   try {
-    const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
-    res.json(deletedTodo);
-  } catch (err) {
-    next(err);
-  }
-});
-
-router.put("/:id", async (req, res, next) => {
-  try {
-    const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body);
-    res.json(updatedTodo);
+    const todo = await Card.findOneAndUpdate({ _id: id }, { list });
+    res.json(todo);
   } catch (err) {
     next(err);
   }

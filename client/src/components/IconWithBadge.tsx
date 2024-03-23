@@ -1,6 +1,6 @@
 import React from "react";
 
-const IconWithBadge = ({ Icon }: { Icon: React.ReactNode }) => {
+const IconWithBadge = ({ Icon }: { Icon: React.ReactElement }) => {
   return (
     <div className="relative">
       {Icon}

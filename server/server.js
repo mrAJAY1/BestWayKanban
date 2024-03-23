@@ -2,6 +2,9 @@ const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 const { connect, connection } = require("mongoose");
+const { Board } = require("./model");
+const Card = require("./model");
+const { initSocket } = require("./socketInstance");
 
 // Load environment variables from .env file
 require("dotenv").config();
@@ -33,29 +36,13 @@ connect(process.env.DB_URL, {
     process.exit(1);
   });
 
-// Socket.io server
-const io = new Server(httpServer, {
-  // Allow all origins to connect to Socket.io server
-  cors: {
-    origin: "*",
-  },
-});
-
-// When a client connects to the Socket.io server
-io.on("connection", (socket) => {
-  console.log(`a user connected ${socket.id}`);
-
-  // When a client disconnects from the Socket.io server
-  socket.on("disconnect", () => {
-    // Log client ID to console
-    console.log(`user disconnected ${socket.id}`);
-  });
-});
+// Initialize Socket.IO
+const io = initSocket(httpServer);
 
 // Routes
-app.use("/api/todos", require("./routes"));
+app.use("/api/lists", require("./routes"));
 
 // Start listening on port 3000
-httpServer.listen(3000, () => {
+httpServer.listen(3000, async () => {
   console.log("listening on *:3000");
 });

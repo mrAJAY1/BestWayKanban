@@ -1,10 +1,10 @@
 import Layout from "@/layout/Layout";
-import BoardContainer from "@/components/BoardContainer";
+import Board from "@/components/Board";
 
 function App() {
   return (
     <Layout>
-      <BoardContainer title="My Board" />
+        <Board title="My Board" />
     </Layout>
   );
 }

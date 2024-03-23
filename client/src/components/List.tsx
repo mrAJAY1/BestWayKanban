@@ -3,7 +3,7 @@ import ListActions from "./ListActions";
 import Card from "./Card";
 import { Item, ListType } from "@/contexts/ListContext";
 import { useDrop } from "react-dnd";
-import { shiftTask, useListContext } from "@/lib/utils";
+import { shiftTask, useListContext, useLiveUpdates } from "@/lib/utils";
 
 type Props = {
   name: string;
@@ -12,11 +12,14 @@ type Props = {
 };
 
 const List = ({ name, cards, list }: Props) => {
-  const { listFuncs } = useListContext();
+  const { listFuncs, setData } = useListContext();
+  useLiveUpdates();
   const [{ isOver }, drop] = useDrop(() => ({
     accept: "task",
     drop: (item: Item) => {
-      shiftTask(item, list, listFuncs);
+      shiftTask(item, list, listFuncs).then((data) => {
+        setData(data as { from: ListType; item: Item[] });
+      });
     },
     collect: (monitor) => ({
       isOver: !!monitor.isOver(),

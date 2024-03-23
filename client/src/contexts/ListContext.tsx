@@ -20,12 +20,18 @@ export const listContext = createContext<{
   completed: Item[];
   boardData: Item[];
   listFuncs: ListFuncs;
+  data: { from: ListType; item: Item[] } | null;
+  setData: React.Dispatch<
+    React.SetStateAction<{ from: ListType; item: Item[] } | null>
+  >;
   setBoardData: React.Dispatch<React.SetStateAction<Item[]>>;
 }>({
   todos: [],
   actives: [],
   completed: [],
   boardData: [],
+  data: null,
+  setData: () => {},
   setBoardData: () => {},
   listFuncs: {
     setTodos: () => {},
@@ -43,11 +49,15 @@ export default function ListContextProvider({
   const [todos, setTodos] = useState<Item[]>([]);
   const [actives, setActives] = useState<Item[]>([]);
   const [completed, setCompleted] = useState<Item[]>([]);
-
+  const [data, setData] = useState<{ from: ListType; item: Item[] } | null>(
+    null
+  );
   return (
     <listContext.Provider
       value={{
         todos,
+        data,
+        setData,
         actives,
         completed,
         boardData,

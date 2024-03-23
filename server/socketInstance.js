@@ -10,9 +10,8 @@ function initSocket(server) {
   io.on("connection", (socket) => {
     console.log(`user ${socket.id} connected`);
     socket.emit("connected", { message: "Real time updates active" });
-    socket.on("cardShift", (data) => {
-      console.log(data);
-      socket.broadcast.emit("receiveShift", data);
+    socket.on("shiftCard", (data) => {
+      if (data.item && data.from) socket.broadcast.emit("receiveShift", data);
     });
     socket.on("cardCreation", (data) => {
       socket.broadcast.emit("receiveCreation", data);
